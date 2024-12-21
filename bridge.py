@@ -10,6 +10,14 @@ import locale
 import threading
 
 
+def is_number(number):
+    try:
+        float(number)
+        return True
+    except ValueError:
+        return False
+
+
 class Bridge(QObject):
     view_array_changed = Signal()
     view_table_changed = Signal()
@@ -147,17 +155,19 @@ class Bridge(QObject):
                 self._source.current_activity = int(self._view_array[6])
                 self._source.parameters_changed()
             case "activity":
-                self._source.current_activity = int(self._view_array[6])
-                self._source.material = self._view_array[7]
-                self._source.thickness = self._view_array[8]
-                self._source.distance = self._view_array[9]
-                self._source.type = self._view_array[10]
-                self._source.calculate()
+                if is_number(self._view_array[8]) and is_number(self._view_array[9]):
+                    self._source.current_activity = int(self._view_array[6])
+                    self._source.material = self._view_array[7]
+                    self._source.thickness = self._view_array[8]
+                    self._source.distance = self._view_array[9]
+                    self._source.type = self._view_array[10]
+                    self._source.calculate()
             case "der":
-                self._source.sum_dose_rate = locale.atof(self._view_array[12])
-                calc_thread = threading.Thread(target=self._source.reverse_calculation)
-                calc_thread.daemon = True
-                calc_thread.start()
+                if is_number(self._view_array[12]):
+                    self._source.sum_dose_rate = locale.atof(self._view_array[12])
+                    calc_thread = threading.Thread(target=self._source.reverse_calculation)
+                    calc_thread.daemon = True
+                    calc_thread.start()
             case _:
                 self._source.index_changed(int(action))
 

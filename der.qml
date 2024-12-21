@@ -79,7 +79,7 @@ Page {
                 id: parameters_pane
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: 520
+                Layout.preferredHeight: 360
                 Material.elevation: 5
                 Material.background: Material.color(custom_color, Material.Shade50)
 
@@ -316,7 +316,7 @@ Page {
                 id: shield_pane
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: 350
+                Layout.preferredHeight: 290
                 Material.elevation: 5
                 Material.background: Material.color(custom_color, Material.Shade50)
 
@@ -395,9 +395,9 @@ Page {
                     anchors.rightMargin: margin
                     text: bridge.view_array[8]
                     color: custom_color
-                    validator: DoubleValidator {
-                        bottom: 0
-                    }
+                    //validator: DoubleValidator {
+                    //    bottom: 0
+                    //}
                     enabled: bridge.db_exists
                     onTextEdited: {
                         if (acceptableInput) {
@@ -436,9 +436,9 @@ Page {
                     anchors.rightMargin: margin
                     text: bridge.view_array[9]
                     color: custom_color
-                    validator: DoubleValidator {
-                        bottom: 0.1
-                    }
+                    //validator: DoubleValidator {
+                    //    bottom: 0.1
+                    //}
                     enabled: bridge.db_exists
                     onTextEdited: {
                         if (acceptableInput) {
@@ -538,9 +538,9 @@ Page {
                     anchors.rightMargin: margin
                     text: "0.0"
                     color: custom_color
-                    validator: DoubleValidator {
-                        bottom: 0.1
-                    }
+                    //validator: DoubleValidator {
+                    //    bottom: 0.1
+                    //}
                     enabled: bridge.db_exists
                     onTextEdited: {
                         if (acceptableInput) {
