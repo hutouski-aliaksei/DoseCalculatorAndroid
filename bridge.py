@@ -156,8 +156,8 @@ class Bridge(QObject):
 
         temp = []
         for i in range(len(self._source.lines)):
-            temp.append(f'{round(self._source.lines[i][0]*1000, 3)}\t\t{self._source.lines[i][1]}\t\t{round(self._source.kerma_rate[i], 3)}\t\t'
-                        f'{round(self._source.dose_rate[i], 3)}\t\t{round(self._source.flux[i], 3)}')
+            temp.append(f'{round(self._source.lines[i][0]*1000, 3)}\t{self._source.lines[i][1]}\t'
+                        f'{round(self._source.dose_rate[i], 3)}\t{round(self._source.flux[i], 3)}')
         self._view_table = temp
 
     def dynamic_data_changed(self):
@@ -230,7 +230,7 @@ def run_app():
 
     engine.rootContext().setContextProperty('bridge', bridge)
 
-    engine.load("qrc:/qml/main.qml")
+    engine.load("main.qml")
 
     if not engine.rootObjects():
         return -1

@@ -8,31 +8,28 @@ import QtQuick.Window
 Page {
     id: root
 
-    property int button_width: 100
-    property int button_height: 30
-    property int margin: 10
+    // property int margin: 10
 
     Material.theme: Material.Light
     Material.accent: custom_color
-    width: 1280
-    height: 768
+    width: Screen.width
+    height: Screen.height
     header: Item {
         height: 10
     }
 
-    RowLayout {
-        id: row_layout
+    ScrollView {
+
         anchors.fill: parent
-        anchors.leftMargin: margin
-        anchors.rightMargin: margin
-        anchors.bottomMargin: button_height
-        spacing: margin
+        contentWidth: parent.width
+        anchors.bottomMargin: button_height/3
 
         ColumnLayout {
             id: left_column_layout
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.preferredWidth: 100
+            anchors.fill: parent
+            anchors.leftMargin: margin
+            anchors.rightMargin: margin
+            anchors.bottomMargin: margin
             spacing: margin
 
             Pane {
@@ -45,13 +42,15 @@ Page {
 
                 Label {
                     id: catalogue_label
-                    width: button_width
+                    width: button_width/2
                     height: button_height
                     anchors.left: parent.left
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.leftMargin: margin
+                    wrapMode: Text.WordWrap
 
                     verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
                     font.bold: true
                     font.pixelSize: 14
                     Material.foreground: custom_color
@@ -61,7 +60,7 @@ Page {
 
                 ComboBox {
                     id: catalogue_combobox
-                    width: button_width*2
+                    width: button_width*3.5
                     height: button_height
                     anchors.verticalCenter: catalogue_label.verticalCenter
                     anchors.right: parent.right
@@ -553,15 +552,6 @@ Page {
             }
 
 
-        }
-
-        ColumnLayout {
-            id: right_column_layout
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.preferredWidth: 200
-            spacing: margin
-
             Pane {
                 id: results_pane
                 Layout.fillWidth: true
@@ -595,7 +585,7 @@ Page {
 
                             horizontalAlignment: Text.AlignHCenter
                             font.bold: true
-                            font.pixelSize: 22
+                            font.pixelSize: 12
                             Material.foreground: custom_color
 
                             text: "Dose equivalent rate, \u03BCSv/h"
@@ -612,7 +602,7 @@ Page {
 
                             horizontalAlignment: Text.AlignHCenter
                             font.bold: true
-                            font.pixelSize: 28
+                            font.pixelSize: 22
                             Material.foreground: custom_color
 
                             text: result_der
@@ -650,7 +640,7 @@ Page {
 
                             horizontalAlignment: Text.AlignHCenter
                             font.bold: true
-                            font.pixelSize: 22
+                            font.pixelSize: 12
                             Material.foreground: custom_color
 
                             text: "Flux, photons/cm\u00B2s"
@@ -667,7 +657,7 @@ Page {
 
                             horizontalAlignment: Text.AlignHCenter
                             font.bold: true
-                            font.pixelSize: 28
+                            font.pixelSize: 22
                             Material.foreground: custom_color
 
                             text: result_flux
@@ -704,9 +694,7 @@ Page {
                     model: bridge.view_table
                     anchors.fill: parent
                     anchors.topMargin: margin
-                    anchors.leftMargin: margin
-                    anchors.bottomMargin: button_height+margin
-                    anchors.rightMargin: margin
+                    anchors.bottomMargin: margin*2
                     flickableDirection: Flickable.VerticalFlick
                     boundsBehavior: Flickable.StopAtBounds
                     headerPositioning: ListView.OverlayHeader
@@ -715,7 +703,7 @@ Page {
                         id: lines_header_label
                         height: button_height
                         width: lines_view.width
-                        text: "Energy, keV\t\tYield, %\t\tKR, \u03BCGy/h\t\tDER, \u03BCSv/h\t\tFlux, p/cm\u00B2s"
+                        text: "Energy, keV\tYield, %\tDER, \u03BCSv/h\tFlux, p/cm\u00B2s"
                         font.bold: true
                         font.pixelSize: 14
                         color: Material.color(custom_color)
@@ -730,7 +718,6 @@ Page {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
 
-                    ScrollBar.vertical: ScrollBar {}
 
                     delegate: Label {
                         required property int index
@@ -749,9 +736,4 @@ Page {
 
     }
 
-
-    footer: Item
-    {
-        height: button_height
-    }
 }

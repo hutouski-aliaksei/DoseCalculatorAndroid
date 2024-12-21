@@ -5,10 +5,8 @@ import QtQuick.Controls.Material
 
 ApplicationWindow {
     id: main_window
-    width: 1280
-    height: 768
-    x: 100
-    y: 100
+    width: Screen.width
+    height: Screen.height
     visible: true
     title: "DoseCalculator 0.2.5"
 
@@ -17,10 +15,10 @@ ApplicationWindow {
     minimumHeight: height
     minimumWidth: width
 
-    property int button_width: 100
-    property int button_height: 30
+    property int button_width: width/6
+    property int button_height: height/20
     property int custom_color: Material.Indigo
-    property int margin: 10
+    property int margin: button_height/3
     property var waiting: bridge.wait
 
     Material.theme: Material.Light
@@ -90,8 +88,8 @@ ApplicationWindow {
     Popup{
         id: wait_popup
         modal: false
-        width: 200
-        height: 200
+        width: button_width*2
+        height: button_height*2
         anchors.centerIn: parent
 
         contentItem:

@@ -1,5 +1,5 @@
 from PySide6.QtCore import QObject, Signal, Property
-from scipy.stats import poisson
+#from scipy.stats import poisson
 import locale
 
 
@@ -96,7 +96,7 @@ class Limit(QObject):
             k = k + 1
             prob_temp = 0
             for j in range(k, 5000):
-                prob_temp = prob_temp + poisson.pmf(j, mean)
+                prob_temp = prob_temp + 1
         self._limit = k
 
         self._data_changed = True
@@ -119,7 +119,7 @@ class Limit(QObject):
                 mean = back * locale.atof(self._time)
                 prob_temp = 0
                 for j in range(i, 1000, 1):
-                    prob_temp = prob_temp + poisson.pmf(j, mean)
+                    prob_temp = prob_temp + 1
             temp.append(round(back, 2))
 
         self._bckgr_cps = temp

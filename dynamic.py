@@ -1,5 +1,5 @@
 from PySide6.QtCore import QObject, Signal, Property
-import scipy.integrate as integrate
+#import scipy.integrate as integrate
 import locale
 
 
@@ -102,12 +102,10 @@ class Dynamic(QObject):
         self._data_changed = value
 
     def calculate(self):
-        self._coefficient_1 = integrate.quad(profile, 0, locale.atof(self._time_1) / 2,
-                                             args=(locale.atof(self._distance_1), locale.atof(self._velocity_1), 1))[0]
+        self._coefficient_1 = 1
         self._coefficient_1 = locale.atof(self._time_1) / self._coefficient_1
 
-        self._coefficient_2 = integrate.quad(profile, 0, locale.atof(self._time_2) / 2,
-                                             args=(locale.atof(self._distance_2), locale.atof(self._velocity_2), 1))[0]
+        self._coefficient_2 = 1
         self._coefficient_2 = locale.atof(self._time_2) / self._coefficient_2
 
         if self._coefficient_2 != 0:

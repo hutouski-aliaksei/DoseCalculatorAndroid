@@ -1,6 +1,6 @@
 from PySide6.QtCore import QObject, Signal, Property
-import numpy as np
-from scipy import interpolate
+#import numpy as np
+#from scipy import interpolate
 from datetime import *
 import locale
 
@@ -278,7 +278,7 @@ class Source(QObject):
         c_d = datetime.strptime(self._cur_date, '%m/%d/%Y')
         delta = c_d - p_d
         decay_time = delta.days
-        current_activity = round(self._original_activity * np.exp(-(0.693 / self._halflife) * decay_time))
+        current_activity = round(self._original_activity * (2.71828)**(-(0.693 / self._halflife) * decay_time))
         self._current_activity = current_activity
 
     def line_kerma_rate(self):
@@ -288,15 +288,15 @@ class Source(QObject):
         for item in self._kerma_coeffs:
             temp_en.append(item[0])
             temp_c.append(item[1])
-        kerma_interpolated = interpolate.interp1d(temp_en, temp_c, fill_value='extrapolate')
+        #kerma_interpolated = interpolate.interp1d(temp_en, temp_c, fill_value='extrapolate')
 
         for i in range(len(self._lines)):
-            kerma_value = kerma_interpolated(self._lines[i][0]) * 3600
+            kerma_value = 1
             kerma_rate.append(kerma_value * self._flux[i])
         self._kerma_rate = kerma_rate
 
     def line_flux(self):
-        s_a = np.arcsin(np.sin(0.5 / locale.atof(self._distance)) ** 2) / np.pi
+        s_a = 0.1
         flux = []
 
         for i in range(len(self._lines)):
@@ -311,10 +311,10 @@ class Source(QObject):
         for item in self._der_coefficients:
             temp_en.append(item[0])
             temp_c.append(item[1])
-        h_interpolated = interpolate.interp1d(temp_en, temp_c, fill_value='extrapolate')
+        #h_interpolated = interpolate.interp1d(temp_en, temp_c, fill_value='extrapolate')
 
         for i in range(len(self._lines)):
-            d_r.append(self._kerma_rate[i] * h_interpolated(self._lines[i][0]))
+            d_r.append(self._kerma_rate[i] * 1)
         self._dose_rate = d_r
 
     def calculate(self):
@@ -350,9 +350,9 @@ class Source(QObject):
         for item in self._coefficients:
             temp_en.append(item[0])
             temp_c.append(item[1])
-        attenuation_interpolated = interpolate.interp1d(temp_en, temp_c, fill_value='extrapolate')
+        #attenuation_interpolated = interpolate.interp1d(temp_en, temp_c, fill_value='extrapolate')
         for item in self._lines:
-            attenuation_values.append(np.exp(-locale.atof(self._thickness) * attenuation_interpolated(item[0])))
+            attenuation_values.append(2.71**(-locale.atof(self._thickness) * 1))
         self._attenuation_values = attenuation_values
 
         attenuation_values = []
@@ -361,9 +361,9 @@ class Source(QObject):
         for item in self._air_coefficients:
             temp_en.append(item[0])
             temp_c.append(item[1])
-        attenuation_interpolated = interpolate.interp1d(temp_en, temp_c, fill_value='extrapolate')
+        #attenuation_interpolated = interpolate.interp1d(temp_en, temp_c, fill_value='extrapolate')
         for item in self._lines:
-            attenuation_values.append(np.exp(-self._air_thickness * attenuation_interpolated(item[0])))
+            attenuation_values.append(2.71**(-self._air_thickness * 1))
         self._air_attenuation_values = attenuation_values
 
     def reverse_calculation(self):

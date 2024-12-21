@@ -3,10 +3,10 @@
         <file>img/icon.ico</file>
         <file>img/profile.png</file>
         <file>img/user_avatar.png</file>
-        <file>qml/coefficients.qml</file>
-        <file>qml/der.qml</file>
-        <file>qml/dynamic.qml</file>
-        <file>qml/main.qml</file>
-        <file>qml/WaitElement.qml</file>
+        <file>coefficients.qml</file>
+        <file>der.qml</file>
+        <file>dynamic.qml</file>
+        <file>main.qml</file>
+        <file>WaitElement.qml</file>
     </qresource>
 </RCC>

@@ -1,14 +1,14 @@
 [app]
 
 # title of your application
-title = DoseCalculator
+title = dosecalculator
 
 # project directory. the general assumption is that project_dir is the parent directory
 # of input_file
-project_dir = C:\Develope\DoseCalculator
+project_dir = /home/user/DoseCalculatorModern
 
 # source file path
-input_file = C:\Develope\DoseCalculator\main.py
+input_file = /home/user/DoseCalculatorModern/main.py
 
 # directory where exec is stored
 exec_directory = .
@@ -17,12 +17,12 @@ exec_directory = .
 project_file = DoseCalculator.pyproject
 
 # application icon
-icon = C:\Develope\DoseCalculator\img\icon.ico
+icon = /home/user/ve/venv/lib/python3.11/site-packages/PySide6/scripts/deploy_lib/pyside_icon.jpg
 
 [python]
 
 # python path
-python_path = C:\Develope\DoseCalculator\venv68\Scripts\python.exe
+python_path = /home/user/ve/venv/bin/python3.11
 
 # python packages to install
 packages = Nuitka==2.4.8
@@ -34,27 +34,27 @@ android_packages = buildozer==1.5.0,cython==0.29.33
 
 # comma separated path to qml files required
 # normally all the qml files required by the project are added automatically
-qml_files = qml\main.qml,qml\der.qml,qml\coefficients.qml,qml\dynamic.qml
+qml_files = main.qml,der.qml,coefficients.qml,dynamic.qml
 
 # excluded qml plugin binaries
 excluded_qml_plugins = QtQuick3D,QtSensors,QtTest,QtWebEngine
 
 # qt modules used. comma separated
-modules = Gui,Core,Qml,QuickControls2,Quick
+modules = Gui,Qml,OpenGL,Network,Quick,QuickControls2,Core
 
 # qt plugins used by the application
-plugins = accessiblebridge,platformthemes,imageformats,platforms,iconengines,xcbglintegrations,styles,generic,platforms/darwin,platforminputcontexts,egldeviceintegrations,scenegraph,qmltooling
+plugins = 
 
 [android]
 
 # path to pyside wheel
-wheel_pyside = 
+wheel_pyside = /home/user/whl/PySide6-6.8.0a1-6.8.1-cp311-cp311-android_aarch64.whl
 
 # path to shiboken wheel
-wheel_shiboken = 
+wheel_shiboken = /home/user/whl/shiboken6-6.8.0a1-6.8.1-cp311-cp311-android_aarch64.whl
 
 # plugins to be copied to libs folder of the packaged application. comma separated
-plugins = 
+plugins = platforms_qtforandroid
 
 [nuitka]
 
@@ -67,7 +67,7 @@ macos.permissions =
 mode = onefile
 
 # (str) specify any extra nuitka arguments
-extra_args = --quiet --noinclude-qt-translations --nofollow-import-to=tkinter --windows-icon-from-ico=img/icon.ico --windows-console-mode=disable
+extra_args = --quiet --noinclude-qt-translations
 
 [buildozer]
 
@@ -77,22 +77,22 @@ extra_args = --quiet --noinclude-qt-translations --nofollow-import-to=tkinter --
 mode = debug
 
 # contrains path to pyside6 and shiboken6 recipe dir
-recipe_dir = 
+recipe_dir = /home/user/DoseCalculatorModern/deployment/recipes
 
 # path to extra qt android jars to be loaded by the application
-jars_dir = 
+jars_dir = /home/user/DoseCalculatorModern/deployment/jar/PySide6/jar
 
 # if empty uses default ndk path downloaded by buildozer
-ndk_path = 
+ndk_path = /home/user/.pyside6_android_deploy/android-ndk/android-ndk-r26b
 
 # if empty uses default sdk path downloaded by buildozer
-sdk_path = 
+sdk_path = /home/user/.pyside6_android_deploy/android-sdk
 
 # other libraries to be loaded. comma separated.
 # loaded at app startup
-local_libs = 
+local_libs = plugins_platforms_qtforandroid
 
 # architecture of deployed platform
 # possible values = ["aarch64", "armv7a", "i686", "x86_64"]
-arch = 
+arch = aarch64
 

@@ -8,14 +8,12 @@ import QtQuick.Window
 Page {
     id: root
 
-    property int button_width: 100
-    property int button_height: 30
     property int margin: 10
 
     Material.theme: Material.Light
     Material.accent: custom_color
-    width: 1280
-    height: 768
+    width: Screen.width
+    height: Screen.height
     header: Item {
         height: 10
     }
