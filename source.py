@@ -453,6 +453,8 @@ class Source(QObject):
             self._sum_flux = float(sum(self._flux))
             self._sum_dose_rate = float(sum(self._dose_rate))
 
+        self._distance = str(round(locale.atof(self._distance), 3))
+
         self._data_changed = True
         self.data_changed_changed.emit()
 
