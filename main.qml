@@ -134,12 +134,6 @@ ApplicationWindow {
         case 0:
              main_layout.replace("der.qml")
             break
-        case 1:
-             main_layout.replace("dynamic.qml")
-            break
-        case 2:
-             main_layout.replace("coefficients.qml")
-            break
         default:
             break
         }
@@ -157,14 +151,6 @@ ApplicationWindow {
         TabButton {
             text: "DER"
         }
-
-        TabButton {
-            text: "Dynamic and Limits"
-        }
-
-//        TabButton {
-//            text: "Coefficients"
-//        }
 
     }
 

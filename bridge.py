@@ -8,8 +8,6 @@ from database import Database
 from source import Source
 import locale
 import threading
-from dynamic import Dynamic
-from limits import Limit
 
 
 class Bridge(QObject):
@@ -20,7 +18,6 @@ class Bridge(QObject):
     shields_list_changed = Signal()
     dose_types_changed = Signal()
     wait_changed = Signal()
-    view_dynamic_changed = Signal()
     db_exists_changed = Signal()
 
     def __init__(self):
@@ -35,17 +32,7 @@ class Bridge(QObject):
         self._shields_list = []
         self._dose_types = ["Ambient", "Personal"]
 
-        self._view_dynamic = []
         self._db_exists = True
-
-        self._dynamic = Dynamic()
-        self._limit = Limit()
-
-        self._dynamic.data_changed_changed.connect(self.dynamic_data_changed)
-        self._limit.wait_changed.connect(self.wait_value_changed)
-        self._limit.data_changed_changed.connect(self.dynamic_data_changed)
-
-        self.dynamic_data_changed()
 
         try:
             self._db = Database('DoseCalculator_DB.db')
@@ -106,14 +93,6 @@ class Bridge(QObject):
     def wait(self):
         return self._wait
 
-    @Property(list, notify=view_dynamic_changed)
-    def view_dynamic(self):
-        return self._view_dynamic
-
-    @view_dynamic.setter
-    def view_dynamic(self, value):
-        self._view_dynamic = value
-
     @Property(bool, notify=db_exists_changed)
     def db_exists(self):
         return self._db_exists
@@ -138,9 +117,6 @@ class Bridge(QObject):
             case '_wait':
                 super().__setattr__(name, value)
                 self.wait_changed.emit()
-            case '_view_dynamic':
-                super().__setattr__(name, value)
-                self.view_dynamic_changed.emit()
             case '_db_exists':
                 super().__setattr__(name, value)
                 self.db_exists_changed.emit()
@@ -159,13 +135,6 @@ class Bridge(QObject):
             temp.append(f'{round(self._source.lines[i][0]*1000, 3)}\t{self._source.lines[i][1]}\t'
                         f'{round(self._source.dose_rate[i], 3)}\t{round(self._source.flux[i], 3)}')
         self._view_table = temp
-
-    def dynamic_data_changed(self):
-        temp = [self._dynamic.distance_1, self._dynamic.distance_2, self._dynamic.velocity_1, self._dynamic.velocity_2,
-                self._dynamic.time_1, self._dynamic.time_2, self._dynamic.coefficient_1, self._dynamic.coefficient_2,
-                self._dynamic.ratio, self._limit.background, self._limit.far, self._limit.time, self._limit.limit,
-                self._limit.max_limit, ', '.join(['{:.2f}'.format(x) for x in self._limit.bckgr_cps])]
-        self._view_dynamic = temp
 
     @Slot(str)
     def on_action(self, action):
@@ -189,36 +158,12 @@ class Bridge(QObject):
                 calc_thread = threading.Thread(target=self._source.reverse_calculation)
                 calc_thread.daemon = True
                 calc_thread.start()
-            case "dynamic":
-                self._dynamic.distance_1 = self._view_dynamic[0]
-                self._dynamic.distance_2 = self._view_dynamic[1]
-                self._dynamic.velocity_1 = self._view_dynamic[2]
-                self._dynamic.velocity_2 = self._view_dynamic[3]
-                self._dynamic.time_1 = self._view_dynamic[4]
-                self._dynamic.time_2 = self._view_dynamic[5]
-                self._dynamic.calculate()
-            case "limit":
-                self._limit.background = self._view_dynamic[9]
-                self._limit.far = self._view_dynamic[10]
-                self._limit.time = self._view_dynamic[11]
-                limit_thread = threading.Thread(target=self._limit.calculate)
-                limit_thread.daemon = True
-                limit_thread.start()
-            case "reverse_limit":
-                self._limit.far = self._view_dynamic[10]
-                self._limit.time = self._view_dynamic[11]
-                self._limit.max_limit = self._view_dynamic[13]
-                limit_thread = threading.Thread(target=self._limit.calculate_reverse)
-                limit_thread.daemon = True
-                limit_thread.start()
             case _:
                 self._source.index_changed(int(action))
 
     def wait_value_changed(self):
         if self._db_exists:
-            self._wait = self._source.wait or self._limit.wait
-        else:
-            self._wait = self._limit.wait
+            self._wait = self._source.wait
 
 
 def run_app():

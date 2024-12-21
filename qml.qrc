@@ -1,12 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>img/icon.ico</file>
-        <file>img/profile.png</file>
         <file>img/user_avatar.png</file>
-        <file>coefficients.qml</file>
         <file>der.qml</file>
-        <file>dynamic.qml</file>
         <file>main.qml</file>
-        <file>WaitElement.qml</file>
     </qresource>
 </RCC>

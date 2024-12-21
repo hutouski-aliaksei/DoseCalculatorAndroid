@@ -1,5 +1,4 @@
 import sqlite3 as sq
-#import numpy as np
 
 
 class Database:
@@ -28,21 +27,15 @@ class Database:
         if table in ['DoseConversionCoefficients', 'Materials']:
             res = self._cur.execute(f"select energy, {name} from {table} where {name} is not null order by energy asc")
             data = res.fetchall()
-            # data = np.array(data)
         elif table == 'Sources':
             res = self._cur.execute(f"select * from {table} order by id asc")
             data = res.fetchall()
-            # data = pd.DataFrame(data)
-            # data.columns = ['Number', 'Isotope', 'SourceNumber', 'ProductionDate', 'OriginalActivity_Bq']
         elif table == 'Halflife':
             res = self._cur.execute(f"select * from {table} order by Isotope asc")
             data = res.fetchall()
-            # data = pd.DataFrame(data)
-            # data.columns = ['Isotope', 'Half_life_d']
         elif table == 'Lines':
             res = self._cur.execute(f"select energy, yield from {table} where isotope = '{name}' order by energy asc")
             data = res.fetchall()
-            # data = np.array(data)
         elif table == 'Columns':
             res = self._cur.execute("select name from pragma_table_info('Materials')")
             data = res.fetchall()
