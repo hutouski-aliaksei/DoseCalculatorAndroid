@@ -2,8 +2,7 @@
 
 The Dose Calculator is a software for calculation of DER form different gamma and neutron radiation sources. This software is developed using Python 3.11.11, QML 6.8.1 and SQLite3.
 
-[Git hub: https://github.com/hutouski-aliaksei/DoseCalculatorModern
-](https://github.com/hutouski-aliaksei/DoseCalculatorModern)
+[Desktop version GitHub](https://github.com/hutouski-aliaksei/DoseCalculatorModern)
 
 The Dose Calculator has two different modes, there are:
 1.	DER calculation with known source, distance and shielding.
