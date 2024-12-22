@@ -77,7 +77,7 @@ Page {
                 id: parameters_pane
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: 360
+                Layout.preferredHeight: 370
                 Material.elevation: 5
                 Material.background: Material.color(custom_color, Material.Shade50)
 
@@ -316,7 +316,7 @@ Page {
                 id: shield_pane
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: 290
+                Layout.preferredHeight: 280
                 Material.elevation: 5
                 Material.background: Material.color(custom_color, Material.Shade50)
 
@@ -487,7 +487,7 @@ Page {
                 id: dose_pane
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: 150
+                Layout.preferredHeight: 140
                 Material.elevation: 5
                 Material.background: Material.color(custom_color, Material.Shade50)
 
@@ -550,7 +550,7 @@ Page {
                 id: results_pane
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: 200
+                Layout.preferredHeight: 190
                 Material.elevation: 5
                 Material.background: Material.color(custom_color, Material.Shade50)
 

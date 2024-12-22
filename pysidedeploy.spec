@@ -40,7 +40,7 @@ qml_files = main.qml,der.qml
 excluded_qml_plugins = QtQuick3D,QtSensors,QtTest,QtWebEngine
 
 # qt modules used. comma separated
-modules = Network,QuickControls2,Core,Quick,Gui,Qml,OpenGL
+modules = Network,Quick,OpenGL,Gui,QuickControls2,Core,Qml
 
 # qt plugins used by the application
 plugins = 
