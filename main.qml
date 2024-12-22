@@ -8,7 +8,7 @@ ApplicationWindow {
     width: Screen.width
     height: Screen.height
     visible: true
-    title: "DoseCalculator 0.2.5"
+    title: "DoseCalculator 0.2.6"
 
     maximumHeight: height
     maximumWidth: width

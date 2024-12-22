@@ -34,7 +34,7 @@ Page {
                 id: catalogue_pane
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: 75
+                Layout.preferredHeight: button_height*2
                 Material.elevation: 5
                 Material.background: Material.color(custom_color, Material.Shade50)
 
@@ -77,7 +77,7 @@ Page {
                 id: parameters_pane
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: 370
+                Layout.preferredHeight: button_height*10
                 Material.elevation: 5
                 Material.background: Material.color(custom_color, Material.Shade50)
 
@@ -316,7 +316,7 @@ Page {
                 id: shield_pane
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: 280
+                Layout.preferredHeight: button_height*8
                 Material.elevation: 5
                 Material.background: Material.color(custom_color, Material.Shade50)
 
@@ -487,7 +487,7 @@ Page {
                 id: dose_pane
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: 140
+                Layout.preferredHeight: button_height*4
                 Material.elevation: 5
                 Material.background: Material.color(custom_color, Material.Shade50)
 
@@ -550,7 +550,7 @@ Page {
                 id: results_pane
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: 190
+                Layout.preferredHeight: button_height*4
                 Material.elevation: 5
                 Material.background: Material.color(custom_color, Material.Shade50)
 
@@ -679,7 +679,7 @@ Page {
                 id: table_pane
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: 500
+                Layout.preferredHeight: button_height*14
                 Material.elevation: 5
                 Material.background: Material.color(custom_color, Material.Shade50)
 
