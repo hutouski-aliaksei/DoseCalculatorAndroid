@@ -8,8 +8,6 @@ import QtQuick.Window
 Page {
     id: root
 
-    // property int margin: 10
-
     Material.theme: Material.Light
     Material.accent: custom_color
     width: Screen.width
@@ -265,6 +263,7 @@ Page {
                     text: bridge.view_array[4]
                     color: custom_color
                     validator: RegularExpressionValidator { regularExpression: /\d{1,15}/ }
+                    inputMethodHints: Qt.ImhDigitsOnly
                     enabled: bridge.db_exists
                     onTextEdited: {
                         if (acceptableInput) {
@@ -301,6 +300,7 @@ Page {
                     text: bridge.view_array[6]
                     color: custom_color
                     validator: RegularExpressionValidator { regularExpression: /\d{1,15}/ }
+                    inputMethodHints: Qt.ImhDigitsOnly
                     enabled: bridge.db_exists
                     onTextEdited: {
                         if (acceptableInput) {
@@ -395,9 +395,7 @@ Page {
                     anchors.rightMargin: margin
                     text: bridge.view_array[8]
                     color: custom_color
-                    //validator: DoubleValidator {
-                    //    bottom: 0
-                    //}
+                    inputMethodHints: Qt.ImhFormattedNumbersOnly
                     enabled: bridge.db_exists
                     onTextEdited: {
                         if (acceptableInput) {
@@ -436,9 +434,7 @@ Page {
                     anchors.rightMargin: margin
                     text: bridge.view_array[9]
                     color: custom_color
-                    //validator: DoubleValidator {
-                    //    bottom: 0.1
-                    //}
+                    inputMethodHints: Qt.ImhFormattedNumbersOnly
                     enabled: bridge.db_exists
                     onTextEdited: {
                         if (acceptableInput) {
@@ -538,9 +534,7 @@ Page {
                     anchors.rightMargin: margin
                     text: "0.0"
                     color: custom_color
-                    //validator: DoubleValidator {
-                    //    bottom: 0.1
-                    //}
+                    inputMethodHints: Qt.ImhFormattedNumbersOnly
                     enabled: bridge.db_exists
                     onTextEdited: {
                         if (acceptableInput) {
