@@ -5,10 +5,10 @@ title = dosecalculator
 
 # project directory. the general assumption is that project_dir is the parent directory
 # of input_file
-project_dir = /home/user/DoseCalculatorModern
+project_dir = /home/user/DoseCalculatorAndroid
 
 # source file path
-input_file = /home/user/DoseCalculatorModern/main.py
+input_file = /home/user/DoseCalculatorAndroid/main.py
 
 # directory where exec is stored
 exec_directory = .
@@ -77,10 +77,10 @@ extra_args = --quiet --noinclude-qt-translations
 mode = debug
 
 # contrains path to pyside6 and shiboken6 recipe dir
-recipe_dir = /home/user/DoseCalculatorModern/deployment/recipes
+recipe_dir = /home/user/DoseCalculatorAndroid/deployment/recipes
 
 # path to extra qt android jars to be loaded by the application
-jars_dir = /home/user/DoseCalculatorModern/deployment/jar/PySide6/jar
+jars_dir = /home/user/DoseCalculatorAndroid/deployment/jar/PySide6/jar
 
 # if empty uses default ndk path downloaded by buildozer
 ndk_path = /home/user/.pyside6_android_deploy/android-ndk/android-ndk-r26b
